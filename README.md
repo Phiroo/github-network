@@ -36,5 +36,19 @@
 
 本次修改是在 feature/update-readme 分支中完成的，用于练习 Pull Request 流程。
 
+\## 作业1：HelloWorld 程序
+
+
+
+本次作业在 ex01 文件夹中创建了 Python 版 HelloWorld 程序。
+
+
+
+\### 第一个版本功能
+
+
+
+\- 输出 Hello World
+
 
 
