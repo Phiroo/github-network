@@ -1,15 +1,16 @@
 // ex07：Web网页端无极调光器
+// 适用于新版 ESP32 Arduino Core
 
 #include <WiFi.h>
 #include <WebServer.h>
 
-const char* ssid = "你的WiFi名称";
-const char* password = "你的WiFi密码";
+const char* ssid = "Yuuko";
+const char* password = "Swjsx601";
 
 WebServer server(80);
 
 const int ledPin = 2;
-const int pwmChannel = 0;
+
 const int pwmFreq = 5000;
 const int pwmResolution = 8;
 
@@ -74,7 +75,8 @@ void handleSet() {
     if (brightness < 0) brightness = 0;
     if (brightness > 255) brightness = 255;
 
-    ledcWrite(pwmChannel, brightness);
+    // 新版 ESP32 PWM 写法
+    ledcWrite(ledPin, brightness);
 
     Serial.print("Brightness: ");
     Serial.println(brightness);
@@ -88,9 +90,9 @@ void handleSet() {
 void setup() {
   Serial.begin(115200);
 
-  ledcSetup(pwmChannel, pwmFreq, pwmResolution);
-  ledcAttachPin(ledPin, pwmChannel);
-  ledcWrite(pwmChannel, 0);
+  // 新版 ESP32 PWM 写法
+  ledcAttach(ledPin, pwmFreq, pwmResolution);
+  ledcWrite(ledPin, 0);
 
   WiFi.begin(ssid, password);
 

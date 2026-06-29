@@ -3,15 +3,15 @@
 #include <WiFi.h>
 #include <WebServer.h>
 
-const char* ssid = "你的WiFi名称";
-const char* password = "你的WiFi密码";
+const char* ssid = "Yuuko";
+const char* password = "Swjsx601";
 
 WebServer server(80);
 
 const int ledPin = 2;
 const int touchPin = 4;
 
-int threshold = 30;
+int threshold = 200;
 
 bool armed = false;       // 是否布防
 bool alarmOn = false;     // 是否报警

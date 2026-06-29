@@ -1,4 +1,5 @@
 // ex05：多档位触摸调速呼吸灯
+// 适用于新版 ESP32 Arduino Core
 
 const int ledPin = 2;
 const int touchPin = 4;
@@ -12,7 +13,6 @@ unsigned long lastTriggerTime = 0;
 const unsigned long debounceDelay = 300;
 
 // PWM参数
-const int pwmChannel = 0;
 const int pwmFreq = 5000;
 const int pwmResolution = 8; // 8位，范围0~255
 
@@ -22,8 +22,8 @@ int fadeDirection = 1;
 void setup() {
   Serial.begin(115200);
 
-  ledcSetup(pwmChannel, pwmFreq, pwmResolution);
-  ledcAttachPin(ledPin, pwmChannel);
+  // 新版 ESP32 PWM 写法
+  ledcAttach(ledPin, pwmFreq, pwmResolution);
 
   Serial.println("ex05 touch speed breathing LED start");
 }
@@ -84,7 +84,8 @@ void updateBreathingLED() {
     fadeDirection = 1;
   }
 
-  ledcWrite(pwmChannel, brightness);
+  // 新版 ESP32 PWM 写法
+  ledcWrite(ledPin, brightness);
 
   delay(delayTime);
 }
